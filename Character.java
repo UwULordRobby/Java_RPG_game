@@ -1,11 +1,11 @@
-package RPG_Game;
+package Java_RPG_game;
 
-
-public class Character {
+// Abstract, we cant create a new Character but only a specific type of one
+abstract public class Character {
     
     // Fields ( The healthPoints are protected since it can be changed for each character )
     public String name;
-    protected int healthPoints;
+    private int healthPoints;
 
     // Constructor
     public Character(String name, int hp) {
@@ -13,7 +13,19 @@ public class Character {
         this.healthPoints = hp;
     }
 
-    public void attack(Character enemy, int damage) {
-        System.out.println("Your character has attacked the enemy and dealt " + damage + " points of damage!");
+    // PUBLIC GETTER: anyone can see the health
+    public int getHealth() {
+        return this.healthPoints;
     }
+
+    // PROTECTED SETTER: modifiable by the subclasses
+    // If it were public anyone could reset their health
+    protected void setHealth(int hp) {
+        this.healthPoints = hp;
+    }
+
+    // ABSTRACT METHOD: the child classes have to define their own attack
+    // The Character class shouldnt attack, so no body on the method
+    public abstract void attack(Character enemy, int damage);
+        
 }

@@ -1,4 +1,4 @@
-package RPG_Game;
+package Java_RPG_game;
 
 public class Mage extends Character{
 
@@ -9,14 +9,23 @@ public class Mage extends Character{
 
     @Override
     public void attack(Character enemy, int damage) {
+        // Creating a variable to store the enemy health
+        int enemyHealth = enemy.getHealth();
+
+        // Calculating the damage based on the Character class
         int mageDamage = (int)(damage * 1.50);
-        System.out.println("Your character " + name + " cast his strongest spell and dealt " + mageDamage + " points of damage");
-        enemy.healthPoints = enemy.healthPoints - mageDamage;
-        System.out.println("The enemy health is now " + enemy.healthPoints);
+        System.out.println("Your character " + this.name + " cast a powerful spell and dealt " + mageDamage + " points of damage");
+
+        // Calculating the new enemy health and storing it in the variable
+        enemyHealth = enemyHealth - mageDamage;
+        System.out.println("The enemy health is now " + enemyHealth);
+        enemy.setHealth(enemyHealth);
     }
 
     public void heal() {
-        healthPoints = healthPoints + 10;
-        System.out.println("You character healed 10 health points, his current hp is now: " + healthPoints);
+        int currentHealth = this.getHealth();
+        int newHp = currentHealth + 10;
+        System.out.println("You character healed 10 health points, his current hp is now: " + newHp);
+        setHealth(newHp);
     }
 }
